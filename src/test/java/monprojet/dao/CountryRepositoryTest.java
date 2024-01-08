@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 import monprojet.entity.*;
+import monprojet.service.PopulationByCountry;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -43,4 +45,16 @@ public class CountryRepositoryTest {
         assertEquals(combienDePaysDansLeJeuDeTest, nombre, "On doit trouver 4 pays" );
     }
 
+    @Test
+    @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
+    void getPopulationById() {
+        assertEquals(12,countryDAO.getPopulationById(1),"On doit trouver 12");
+    }
+
+    @Test
+    @Sql("test-data.sql") // On peut charger des donnnées spécifiques pour un test
+    void getPopulation() {
+        List<PopulationByCountry> lesPopulations = countryDAO.getPopulation();
+        assertEquals(lesPopulations.size(),3,"On doit trouver 3 enregistrements");
+    }
 }

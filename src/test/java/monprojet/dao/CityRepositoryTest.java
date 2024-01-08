@@ -1,6 +1,7 @@
 package monprojet.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -21,6 +22,11 @@ public class CityRepositoryTest {
     private CountryRepository countryDAO;
     @Autowired
     private CityRepository cityDAO;
+
+     @Test
+    void onTrouveLePaysDesVillesParNom() {
+        assertNotNull(cityDAO.findByName("Paris"));
+    }
 
     @Test
     void onTrouveLePaysDesVilles() {
